@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정원 요정 대날리기 🧙</title>
+  <meta name="description" content="투석기로 정원 요정을 멀리 날려보내는 신나는 게임! 캐릭터별 고유 스킬과 다양한 지형을 즐겨보세요." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== 상단 HUD 진행 바 ===== -->
+  <div id="hud" class="hidden">
+    <div id="hud-left">
+      <span id="hud-label-best">🏆 최고</span>
+      <span id="hud-best-dist">0m</span>
+    </div>
+    <div id="progress-bar-wrap">
+      <div id="progress-biome-bg"></div>
+      <div id="progress-best-marker" title="최고기록">
+        <span class="marker-flag">🚩</span>
+      </div>
+      <div id="progress-current-marker" title="현재위치">
+        <span class="marker-char">🧙</span>
+      </div>
+    </div>
+    <div id="hud-right">
+      <span id="hud-label-now">💨 현재</span>
+      <span id="hud-cur-dist">0m</span>
+    </div>
+  </div>
+
+  <!-- ===== 스킬 알림 ===== -->
+  <div id="skill-toast" class="hidden"></div>
+
+  <!-- ===== 메인 캔버스 ===== -->
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- ===== 캐릭터 선택 화면 ===== -->
+  <div id="char-select-screen">
+    <div id="char-select-inner">
+      <div id="title-logo">
+        <span class="title-emoji">🌸</span>
+        <h1>정원 요정 대날리기</h1>
+        <span class="title-emoji">🌸</span>
+      </div>
+      <p class="subtitle">캐릭터를 선택하고 최대한 멀리 날려보세요!</p>
+
+      <div id="char-grid">
+        <!-- JS로 생성 -->
+      </div>
+
+      <button id="btn-start" class="btn-primary" disabled>
+        <span class="btn-icon">🚀</span> 시작하기
+      </button>
+
+      <div id="best-record-display">
+        🏆 최고기록: <span id="global-best">0m</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 발사 UI ===== -->
+  <div id="launch-ui" class="hidden">
+    <div id="launch-hint">
+      <span class="hint-key">🖱️ 드래그</span>로 발사 각도/파워 조절
+    </div>
+    <div id="power-bar-wrap">
+      <div id="power-label">파워</div>
+      <div id="power-bar-bg">
+        <div id="power-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 비행 중 스킬 UI ===== -->
+  <div id="flight-ui" class="hidden">
+    <div id="skill-btn-wrap">
+      <button id="btn-skill">
+        <span id="skill-icon-display"></span>
+        <span id="skill-name-display"></span>
+        <kbd>SPACE / 클릭</kbd>
+      </button>
+      <div id="skill-status">준비됨 ✅</div>
+    </div>
+  </div>
+
+  <!-- ===== 결과 화면 ===== -->
+  <div id="result-screen" class="hidden">
+    <div id="result-inner">
+      <div id="result-emoji">🎉</div>
+      <h2 id="result-title">착지!</h2>
+      <div id="result-dist-wrap">
+        <div class="result-row">
+          <span>이번 기록</span>
+          <span id="result-this">0m</span>
+        </div>
+        <div class="result-row best-row">
+          <span>🏆 최고기록</span>
+          <span id="result-best">0m</span>
+        </div>
+      </div>
+      <div id="result-biome-info"></div>
+      <div id="result-btns">
+        <button id="btn-retry" class="btn-primary">
+          <span>🔄</span> 다시 도전
+        </button>
+        <button id="btn-change-char" class="btn-secondary">
+          <span>🧙</span> 캐릭터 변경
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
